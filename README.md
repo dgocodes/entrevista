@@ -1,4 +1,4 @@
-**Preparacão Completa para Entrevista**
+**Preparação Completa para Entrevista**
 
 ---
 
@@ -82,6 +82,18 @@
 
 # 7. CI/CD (CodeCommit, CodePipeline, CodeBuild)
 
+**O que é CI/CD?**
+> CI/CD significa Integração Contínua (Continuous Integration) e Entrega Contínua (Continuous Delivery). Automatiza o processo de integração de código e deploy em produção.
+
+**O que é CodeCommit?**
+> Serviço de repositório de código na AWS similar ao GitHub.
+
+**O que é CodePipeline?**
+> Serviço para orquestrar o fluxo de CI/CD, conectando etapas como build, testes e deploy.
+
+**O que é CodeBuild?**
+> Serviço de build que compila o código, executa testes e gera artefatos de deploy.
+
 **Pergunta:**
 > Como você estruturaria um pipeline CI/CD?
 
@@ -109,7 +121,63 @@
 > Como você implementa observabilidade em aplicações?
 
 **Resposta:**
-> Logs estruturados no CloudWatch, métricas customizadas, alarmes e tracing distribuído com AWS X-Ray. Também utilizamos Datadog para APM.
+> Logs estruturados no CloudWatch, métricas customizadas, alarmes e tracing distribuído com AWS X-Ray. Também utilizamos Datadog, Grafana e Dynatrace para APM (Application Performance Monitoring).
+
+**Nota:**
+> Sim, Grafana e Dynatrace são ferramentas de monitoramento e observabilidade.
+
+---
+
+# 10. SOLID e Design Patterns
+
+**O que é SOLID?**
+> Conjunto de princípios para tornar o código mais modular, flexível e de fácil manutenção.
+
+**Exemplos de Princípios SOLID:**
+- **S**: Single Responsibility Principle — Cada classe deve ter uma única responsabilidade.
+- **O**: Open/Closed Principle — Aberto para extensão, fechado para modificação.
+- **L**: Liskov Substitution Principle — Subtipos devem ser substituíveis por seus tipos base.
+- **I**: Interface Segregation Principle — Muitas interfaces específicas são melhores que uma interface geral.
+- **D**: Dependency Inversion Principle — Dependa de abstrações, não de implementações.
+
+**Exemplos de Design Patterns:**
+- **Repository Pattern:** Encapsula acesso a dados.
+- **Factory Pattern:** Cria instâncias de objetos.
+- **Singleton Pattern:** Garante que uma classe tenha apenas uma instância.
+- **Observer Pattern:** Comunicação entre objetos (pub/sub).
+
+---
+
+# 11. System Design
+
+**O que é System Design?**
+> É a prática de planejar a arquitetura de sistemas escaláveis, resilientes e performáticos. Engloba decisões sobre APIs, bancos de dados, cache, balanceadores de carga, particionamento, mensageria, etc.
+
+**Exemplo de System Design:**
+> Projeto de um sistema de e-commerce, envolvendo:
+> - API Gateway para roteamento de APIs.
+> - Fargate + Kubernetes para escalabilidade.
+> - Redis como cache.
+> - MySQL para dados relacionais.
+> - Kafka para comunicação entre serviços.
+
+---
+
+# 12. Arquiteturas de Software
+
+**Clean Architecture:**
+> Criada por Robert C. Martin (Uncle Bob), separa o sistema em camadas bem definidas: entidades, casos de uso, adaptadores e frameworks. O núcleo não depende de nada externo. Foco em independência e teste.
+
+**Hexagonal Architecture (Ports and Adapters):**
+> Propõe que o sistema principal se comunique com o exterior através de portas (interfaces), e os detalhes sejam conectados via adaptadores. Facilita a troca de tecnologia sem mudar o núcleo.
+
+**Vertical Slice Architecture:**
+> Em vez de organizar o projeto por "camadas" (controller, service, repository), organiza por funcionalidades. Cada funcionalidade é uma "slice" contendo tudo que precisa: comandos, handlers, validações e respostas.
+
+**Comparativo Simplificado:**
+- Clean Arch: foco em regras de negócio.
+- Hexagonal Arch: foco na independência de entrada/saída.
+- Vertical Slice: foco na experiência do usuário e divisão por feature.
 
 ---
 
