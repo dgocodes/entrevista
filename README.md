@@ -159,11 +159,15 @@
 > Conjunto de princípios para tornar o código modular e de fácil manutenção.
 
 **Princípios SOLID:**
-- S: Single Responsibility Principle
-- O: Open/Closed Principle
-- L: Liskov Substitution Principle
-- I: Interface Segregation Principle
-- D: Dependency Inversion Principle
+- S: Single Responsibility Principle (Responsabilidade unica)
+- O: Open/Closed Principle (Aberto pra extensão fechado pra modificação)
+- L: Liskov Substitution Principle (Uma classe derivada deve ser substituível por sua classe base.)
+- I: Interface Segregation Principle (Uma classe não deve ser forçada a implementar interfaces e métodos que não irão utilizar.)
+- D: Dependency Inversion Principle (Dependa de abstracoes nao de implementacoes)
+
+- KISS:  "Keep It Simple, Stupid" (Mantenha Simples, Estúpido) e é um princípio de design de software que enfatiza a simplicidade e a clareza do código.
+- DRY:   "Don't Repeat Yourself" (Não se repita). É um princípio que visa evitar a duplicação de código, tornando o código mais fácil de manter, legível e menos propenso a erros.
+- YAGNI: "You Ain't Gonna Need It" (Você não vai precisar disso), é um princípio de desenvolvimento de software que enfatiza a importância de não adicionar funcionalidades ao código antes de serem realmente necessárias.
 
 **Design Patterns:**
 - Repository Pattern: Acesso a dados
