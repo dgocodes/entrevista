@@ -237,5 +237,47 @@
 **Resposta:**
 > Otimização de queries, caching, compressão de respostas e ajuste de pool de conexões.
 
----
+**Status codes**
+
+1xx - Informativo
+
+>100 Continue: O servidor recebeu o começo da solicitação e o cliente pode continuar.
+>101 Switching Protocols: O servidor aceita mudar o protocolo de comunicação.
+
+(Em geral, 1xx é pouco usado no dia a dia.)
+
+2xx - Sucesso
+
+>200 OK: A requisição foi bem-sucedida. Resposta padrão para sucesso.
+>201 Created: Um novo recurso foi criado (geralmente após um POST).
+>204 No Content: A requisição foi processada, mas não há conteúdo para retornar.
+
+3xx - Redirecionamento
+
+>301 Moved Permanently: O recurso foi movido permanentemente para outra URL.
+>302 Found (ou "Temporarily Moved"): O recurso foi encontrado em outra URL (temporário).
+>304 Not Modified: O recurso não foi modificado (usado em cache de navegador).
+
+4xx - Erro do cliente
+
+>400 Bad Request: A requisição é inválida (sintaxe errada, parâmetros inválidos, etc.).
+>401 Unauthorized: Falta autenticação ou token inválido.
+>403 Forbidden: Autenticado, mas sem permissão para acessar.
+>404 Not Found: O recurso solicitado não foi encontrado.
+>409 Conflict: Conflito na requisição (por exemplo, duplicidade de dados).
+>422 Unprocessable Entity: A requisição está correta, mas não pode ser processada (dados inválidos para regras de negócio).
+
+5xx - Erro do servidor
+
+>500 Internal Server Error: Erro inesperado no servidor.
+>502 Bad Gateway: O servidor recebeu uma resposta inválida de outro servidor (erro de gateway/proxy).
+>503 Service Unavailable: O servidor está temporariamente indisponível (sobrecarga, manutenção).
+>504 Gateway Timeout: O servidor não recebeu resposta a tempo de outro servidor (timeout).
+
+Dicas rápidas
+
+2xx: Tudo certo ✅
+3xx: Redirecionamento ↪️
+4xx: Culpa do cliente ⚠️
+5xx: Culpa do servidor 🔥
 
