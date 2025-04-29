@@ -250,6 +250,8 @@
 
 ---
 
+# 13. Status codes
+
 # Perguntas Adicionais
 
 **Pergunta:**
@@ -282,5 +284,73 @@
 **Resposta:**
 > Otimização de queries, caching, compressão de respostas e ajuste de pool de conexões.
 
+---
+# 14. Verbos HTTP
+
+Os **verbos HTTP** (também chamados de métodos) definem a ação que será realizada em um recurso da web. Abaixo estão os principais verbos:
+
+## GET
+- **Descrição**: Recupera dados de um recurso.
+- **Exemplo**: Buscar a lista de produtos.
+- **Características**:
+  - Não altera o estado do servidor (é seguro).
+  - Pode ser armazenado em cache.
+
+| **Path Parameter**     | **Query Parameter**      |
+| Identifica um recurso	 | Filtra ou organiza dados |
+| Obrigatório	           | Opcional                 |
+| Parte da rota	         | Depois do ?              |
+
+## POST
+- **Descrição**: Cria um novo recurso.
+- **Exemplo**: Adicionar um novo produto.
+- **Características**:
+  - Pode alterar o estado do servidor.
+  - Normalmente utilizado para envios de formulários.
+
+## PUT
+- **Descrição**: Atualiza um recurso existente ou cria um novo se ele não existir.
+- **Exemplo**: Atualizar as informações de um produto.
+- **Características**:
+  - A operação é **idempotente** (múltiplas chamadas têm o mesmo efeito).
+
+## PATCH
+- **Descrição**: Atualiza parcialmente um recurso existente.
+- **Exemplo**: Alterar apenas o preço de um produto.
+- **Características**:
+  - Não exige enviar todos os dados do recurso.
+  - Pode ou não ser idempotente, dependendo da implementação.
+
+## DELETE
+- **Descrição**: Remove um recurso.
+- **Exemplo**: Deletar um produto da base de dados.
+- **Características**:
+  - Pode ser idempotente (repetir a operação geralmente não gera erro).
+
+## OPTIONS
+- **Descrição**: Recupera os métodos HTTP suportados por um recurso.
+- **Exemplo**: Verificar se `POST` é aceito em um endpoint.
+- **Características**:
+  - Usado frequentemente em pré-flights de CORS.
+
+## HEAD
+- **Descrição**: Similar ao `GET`, mas retorna apenas os cabeçalhos, sem o corpo.
+- **Exemplo**: Checar se um recurso foi modificado sem baixar seu conteúdo.
+- **Características**:
+  - Útil para verificações rápidas de status.
+
+---
+
+# Resumo Rápido
+
+| Verbo   | Ação principal                     | Idempotente | Altera servidor |
+|---------|------------------------------------|-------------|-----------------|
+| GET     | Ler um recurso                     | Sim         | Não             |
+| POST    | Criar um recurso                   | Não         | Sim             |
+| PUT     | Criar/atualizar um recurso         | Sim         | Sim             |
+| PATCH   | Atualizar parte de um recurso      | Depende     | Sim             |
+| DELETE  | Excluir um recurso                 | Sim         | Sim             |
+| OPTIONS | Obter métodos suportados           | Sim         | Não             |
+| HEAD    | Ler metadados de um recurso        | Sim         | Não             |
 
 
