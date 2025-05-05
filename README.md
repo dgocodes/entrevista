@@ -353,4 +353,21 @@ Os **verbos HTTP** (também chamados de métodos) definem a ação que será rea
 | OPTIONS | Obter métodos suportados           | Sim         | Não             |
 | HEAD    | Ler metadados de um recurso        | Sim         | Não             |
 
+---
+
+# 14. Constantes x Readonly
+
+**Const**
+O valor é fixo em tempo de compilação.
+Deve ser atribuído no momento da declaração.
+Só pode ser do tipo primitivo, enum ou string.
+É implicitamente static.
+Não pode ser alterado, nem no código, nem em tempo de execução.
+
+**Readonly**
+O valor é fixado em tempo de execução.
+Pode ser atribuído: Na declaração ou No construtor da classe.
+Pode ser usado com tipos complexos.
+Não pode ser alterado após a construção do objeto (a não ser que a referência seja para um tipo mutável).
+
 
