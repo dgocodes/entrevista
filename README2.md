@@ -1,1067 +1,663 @@
-**C#**
 
-1. O que é o Garbage Collector no C# e como ele funciona?
-
-O Garbage Collector (GC) é um sistema automático de gerenciamento de memória que libera objetos que não estão mais sendo utilizados pela aplicação. Ele atua em ciclos, identifica objetos inacessíveis e libera sua memória. Isso ajuda a prevenir vazamentos de memória sem que o desenvolvedor precise fazer a liberação manual.
-
-2. Qual a diferença entre ref, out e in?
-
-ref: exige que a variável seja inicializada antes de ser passada.
-
-out: não exige inicialização, mas deve ser atribuída dentro do método.
-
-in: passa o argumento por referência, mas somente leitura.
-
-3. O que são tipos por valor e tipos por referência?
-
-Valor (ex: int, bool, struct): armazenam os dados diretamente na stack.
-
-Referência (ex: class, string, array): armazenam um ponteiro para o local da heap onde os dados estão.
-
-4. Qual a diferença entre abstract, virtual e override?
-
-abstract: método que deve ser implementado pelas classes filhas.
-
-virtual: método com uma implementação padrão que pode ser sobrescrito.
-
-override: indica que o método está sobrescrevendo um método virtual ou abstract.
-
-5. O que é LINQ e para que serve?
-
-LINQ (Language Integrated Query) permite consultar coleções de dados (como arrays, listas, banco, XML) de forma declarativa, similar a SQL, diretamente em C#.
-
-6. Explique o conceito de async e await
-
-São usados para programação assíncrona. async marca o método como assíncrono e await pausa sua execução até que uma Task seja concluída, liberando a thread para outras operações.
-
-7. Qual a diferença entre interface e classe abstrata?
-
-interface: define apenas a assinatura dos membros, sem implementação.
-
-classe abstrata: pode conter implementação parcial, métodos abstratos e propriedades.
-
-8. O que é Boxing e Unboxing?
-
-Boxing: converte um tipo por valor em um tipo por referência (ex: int → object).
-
-Unboxing: extrai o tipo por valor de dentro do objeto.
-
-9. O que é Nullable<T> ou ? em tipos?
-
-Permite que tipos por valor aceitem null. Ex: int? pode ter null, int não pode.
-
-10. Quais são os principais modificadores de acesso em C#?
-
-public: acessível por qualquer parte.
-
-private: acessível somente dentro da classe.
-
-protected: acessível na classe e nas derivadas.
-
-internal: acessível dentro do mesmo assembly.
-
-protected internal e private protected: combinações específicas de escopo.
+# Material de Estudo – Entrevista .NET Sênior
 
 ---
 
-**SOLID**
+## C#
 
-1. O que é SOLID e qual seu objetivo?
-SOLID é um acrônimo para cinco princípios de design orientado a objetos que visam melhorar a manutenção, extensibilidade e legibilidade do código. Foi popularizado por Robert C. Martin (Uncle Bob).
+1. **O que é o Garbage Collector no C# e como ele funciona?**  
+O Garbage Collector (GC) é um sistema automático de gerenciamento de memória que libera objetos que não estão mais sendo utilizados pela aplicação. Ele atua em ciclos, identifica objetos inacessíveis e libera sua memória.
 
-2. O que significa o 'S' – Single Responsibility Principle?
-Princípio da Responsabilidade Única: uma classe deve ter apenas um motivo para mudar. Ou seja, ela deve ter apenas uma responsabilidade ou função bem definida.
+2. **Qual a diferença entre ref, out e in?**  
+- `ref`: exige que a variável seja inicializada antes de ser passada.  
+- `out`: não exige inicialização, mas deve ser atribuída dentro do método.  
+- `in`: passa o argumento por referência, mas somente leitura.
 
-3. O que significa o 'O' – Open/Closed Principle?
-Princípio Aberto/Fechado: uma classe deve estar aberta para extensão, mas fechada para modificação. Isso significa que o comportamento pode ser estendido sem alterar o código existente.
+3. **O que são tipos por valor e tipos por referência?**  
+- Valor: armazenado na stack (`int`, `bool`, `struct`).  
+- Referência: armazenado na heap (`class`, `string`, `array`).
 
-4. O que significa o 'L' – Liskov Substitution Principle?
-Princípio da Substituição de Liskov: classes derivadas devem poder ser usadas no lugar das classes base sem quebrar a aplicação. Ou seja, o comportamento esperado não deve mudar.
+4. **Qual a diferença entre abstract, virtual e override?**  
+- `abstract`: método que deve ser implementado nas subclasses.  
+- `virtual`: método com implementação padrão que pode ser sobrescrito.  
+- `override`: sobrescreve método virtual ou abstract.
 
-5. O que significa o 'I' – Interface Segregation Principle?
-Princípio da Segregação de Interfaces: uma classe não deve ser forçada a implementar métodos que não usa. É melhor ter várias interfaces pequenas e específicas do que uma única interface grande.
+5. **O que é LINQ e para que serve?**  
+Permite consultar dados em coleções de forma declarativa, como SQL, direto no C#.
 
-6. O que significa o 'D' – Dependency Inversion Principle?
-Princípio da Inversão de Dependência: módulos de alto nível não devem depender de módulos de baixo nível, ambos devem depender de abstrações. Evita acoplamento direto entre classes.
+6. **Explique o conceito de async e await.**  
+Programação assíncrona: `async` marca o método e `await` aguarda uma `Task`, liberando a thread.
 
-7. Como aplicar SRP (Single Responsibility) na prática?
-Dividindo funcionalidades em classes separadas, por exemplo: uma classe para persistência, outra para regras de negócio, outra para validação.
+7. **Qual a diferença entre interface e classe abstrata?**  
+- Interface: apenas assinaturas.  
+- Classe abstrata: pode conter lógica parcial e métodos abstratos.
 
-8. Como o OCP (Open/Closed) se aplica no dia a dia?
-Utilizando interfaces e herança, podemos criar novas funcionalidades (ex: novos tipos de pagamento) sem alterar classes existentes.
+8. **O que é Boxing e Unboxing?**  
+- Boxing: valor → objeto (por referência).  
+- Unboxing: objeto → valor.
 
-9. Como o DIP (Dependency Inversion) é usado em C#?
-Por meio de injeção de dependência (DI) usando interfaces e IoC containers, como o Microsoft.Extensions.DependencyInjection.
+9. **O que é Nullable<T> ou ? em tipos?**  
+Permite que tipos por valor aceitem `null`, ex: `int?`.
 
-10. Qual a importância de SOLID em projetos reais?
-Aplicar SOLID ajuda a criar sistemas mais modulares, fáceis de testar, dar manutenção e escalar, evitando efeitos colaterais ao modificar o código.
-
----
-
-**Entity Framework Core**
-
-1. O que é o Entity Framework Core?
-É um ORM (Object-Relational Mapper) da Microsoft que permite trabalhar com banco de dados relacional usando objetos C#. Ele traduz consultas LINQ em SQL e faz o mapeamento entre classes e tabelas.
-
-2. Qual a diferença entre EF Core e EF 6?
-EF Core é uma reescrita moderna, multiplataforma e mais leve que o EF 6. Ele oferece melhor desempenho, suporte a .NET moderno, LINQ mais poderoso e mapeamentos mais flexíveis.
-
-3. O que são Migrations no EF Core?
-Migrations permitem versionar o esquema do banco de dados com base no modelo de classes. Comandos como Add-Migration e Update-Database aplicam essas mudanças automaticamente no banco.
-
-4. O que são DbSet<T> e DbContext?
-
-DbSet<T> representa uma tabela no banco de dados.
-
-DbContext gerencia o ciclo de vida das entidades, rastreia alterações e realiza operações de CRUD no banco.
-
-5. O que é o Change Tracker no EF Core?
-É o componente que rastreia alterações nas entidades carregadas, identificando o que foi modificado, inserido ou excluído antes de salvar no banco com SaveChanges().
-
-6. Como funciona o Lazy Loading no EF Core?
-É o carregamento automático de entidades relacionadas quando a propriedade de navegação é acessada. Requer proxies ou carregamento manual com .Include().
-
-7. Como aplicar relacionamentos (1:1, 1:N, N:N) no EF Core?
-Por meio de propriedades de navegação e o uso de métodos como .HasOne(), .WithMany(), .HasForeignKey() no OnModelCreating. Desde o EF Core 5, o relacionamento N:N é suportado nativamente.
-
-8. Como funciona o AsNoTracking()?
-Desativa o rastreamento de mudanças nas entidades retornadas pela consulta, melhorando o desempenho em operações apenas de leitura.
-
-9. O que é Fluent API no EF Core?
-É uma forma de configurar o mapeamento entre classes e tabelas diretamente no código, usando o método OnModelCreating no DbContext, oferecendo mais controle do que os data annotations.
-
-10. Como tratar transações no EF Core?
-Pode-se usar Database.BeginTransaction() para agrupar várias operações em uma transação explícita. Também é possível usar transações implícitas com SaveChanges().
+10. **Quais são os principais modificadores de acesso em C#?**  
+- `public`: qualquer lugar  
+- `private`: dentro da classe  
+- `protected`: na classe e derivadas  
+- `internal`: mesmo assembly  
+- `protected internal`, `private protected`: escopos combinados
 
 ---
 
-**Dapper**
+## SOLID
 
-1. O que é o Dapper?
-Dapper é um micro-ORM (Object-Relational Mapper) desenvolvido pela equipe do Stack Overflow. Ele mapeia resultados de consultas SQL para objetos C# de forma rápida e leve, sem abstrair o SQL.
+1. **O que é SOLID e qual seu objetivo?**  
+Conjunto de 5 princípios de design orientado a objetos para melhorar manutenção e escalabilidade do código.
 
-2. Quais as principais diferenças entre Dapper e EF Core?
+2. **S - Single Responsibility Principle**  
+Uma classe deve ter apenas um motivo para mudar.
 
-Dapper: mais performático, controle total do SQL, sem tracking ou migrations.
+3. **O - Open/Closed Principle**  
+Aberto para extensão, fechado para modificação.
 
-EF Core: mais completo, oferece abstração, migrations, LINQ e tracking automático.
+4. **L - Liskov Substitution Principle**  
+Classes derivadas devem substituir suas bases sem quebrar o comportamento esperado.
 
-3. Como o Dapper funciona internamente?
-Ele usa reflexão e geração de código IL para mapear resultados de queries diretamente para objetos, minimizando overhead e mantendo alta performance.
+5. **I - Interface Segregation Principle**  
+Múltiplas interfaces específicas são melhores que uma única genérica.
 
-4. Dapper é seguro contra SQL Injection?
-Sim, desde que se use parâmetros nomeados (@param) corretamente, o Dapper realiza o binding de parâmetros, prevenindo SQL Injection.
+6. **D - Dependency Inversion Principle**  
+Dependa de abstrações, não de implementações.
 
-5. Como fazer um SELECT com Dapper?
+7. **Como aplicar SRP?**  
+Separando responsabilidades: uma classe para regras, outra para persistência, etc.
 
-csharp
-Copiar
-Editar
-var sql = "SELECT * FROM Produtos WHERE Id = @Id";
-var produto = connection.QueryFirstOrDefault<Produto>(sql, new { Id = 1 });
-6. O que são métodos como Query, QueryFirst, Execute no Dapper?
+8. **Como aplicar OCP?**  
+Com interfaces e herança para estender comportamentos.
 
-Query<T>(): retorna múltiplos registros.
+9. **Como aplicar DIP?**  
+Usando injeção de dependência com containers como `Microsoft.Extensions.DependencyInjection`.
 
-QueryFirst<T>(): retorna o primeiro registro.
-
-QueryFirstOrDefault<T>(): primeiro ou default.
-
-Execute(): para comandos INSERT, UPDATE e DELETE.
-
-7. Como mapear relações (joins) com Dapper?
-Com Query usando lambda para mapear múltiplos objetos:
-
-csharp
-Copiar
-Editar
-connection.Query<Pedido, Cliente, Pedido>(
-    "SELECT * FROM Pedidos p JOIN Clientes c ON p.ClienteId = c.Id",
-    (pedido, cliente) => { pedido.Cliente = cliente; return pedido; }
-);
-8. O Dapper tem suporte a transações?
-Sim. Pode-se usar transações com IDbTransaction:
-
-csharp
-Copiar
-Editar
-using var tx = connection.BeginTransaction();
-// Executa comandos com `transaction: tx`
-tx.Commit();
-9. Como fazer um INSERT com retorno de ID no Dapper?
-
-csharp
-Copiar
-Editar
-var sql = "INSERT INTO Produtos (Nome) VALUES (@Nome); SELECT CAST(SCOPE_IDENTITY() as int)";
-var id = connection.QuerySingle<int>(sql, new { Nome = "Produto A" });
-10. Quais os casos ideais para usar Dapper em vez de EF Core?
-
-Quando a performance é crítica.
-
-Em consultas complexas e específicas.
-
-Quando o controle total sobre o SQL é necessário.
-
-Em aplicações com poucas regras de domínio e foco em acesso direto ao banco.
+10. **Por que aplicar SOLID?**  
+Facilita testes, manutenção e evolução do sistema.
 
 ---
 
-**Microservices**
+## Entity Framework Core
 
-1. O que são Microservices?
-Microservices são uma abordagem arquitetural onde uma aplicação é dividida em pequenos serviços independentes, que se comunicam entre si geralmente por HTTP ou mensageria, e que podem ser desenvolvidos, implantados e escalados separadamente.
+1. **O que é EF Core?**  
+ORM da Microsoft para acesso a bancos relacionais via LINQ.
 
-2. Quais as principais vantagens dos Microservices?
+2. **Diferença entre EF Core e EF6?**  
+EF Core é mais leve, moderno e multiplataforma.
 
-Escalabilidade independente
+3. **O que são Migrations?**  
+Controle de versão do banco baseado nas classes C#.
 
-Desenvolvimento paralelo entre times
+4. **DbSet<T> e DbContext?**  
+- `DbSet<T>`: representa tabela.  
+- `DbContext`: coordena entidades e acesso ao banco.
 
-Resiliência e isolamento de falhas
+5. **Change Tracker?**  
+Rastreia alterações feitas nas entidades carregadas.
 
-Deploys independentes
+6. **Lazy Loading?**  
+Carrega entidades relacionadas automaticamente ao acessar a propriedade.
 
-Tecnologias variadas por serviço (polyglot)
+7. **Relacionamentos 1:1, 1:N, N:N?**  
+Feitos com `HasOne`, `WithMany`, `HasMany`, etc.
 
-3. Quais os principais desafios dos Microservices?
+8. **AsNoTracking()?**  
+Desativa tracking, ideal para consultas apenas leitura.
 
-Complexidade na orquestração e deploy
+9. **Fluent API?**  
+Configuração programática de entidades no `OnModelCreating`.
 
-Gerenciamento de dados distribuídos
-
-Monitoramento e observabilidade
-
-Latência e falhas de rede
-
-Controle de transações distribuídas
-
-4. Qual a diferença entre comunicação síncrona e assíncrona entre microserviços?
-
-Síncrona: geralmente via HTTP/REST ou gRPC, o cliente espera a resposta.
-
-Assíncrona: via mensagens (ex: RabbitMQ, Kafka), não bloqueia a chamada e é ideal para desacoplamento.
-
-5. O que é um API Gateway e qual seu papel em microservices?
-É uma camada intermediária que centraliza chamadas de APIs, roteando requisições para os serviços corretos, além de aplicar autenticação, cache, logging e rate limiting.
-
-6. Como lidar com transações distribuídas em microservices?
-Usando padrões como Sagas (coordenadas ou coreografadas), eventual consistency e mensageria, ao invés de tentar manter transações ACID entre bancos diferentes.
-
-7. Como gerenciar a autenticação e autorização entre microservices?
-
-Com JWT (JSON Web Token) e OAuth2
-
-Utilizando um Identity Provider centralizado (como IdentityServer, Keycloak)
-
-Cada serviço valida o token sem armazenar sessões.
-
-8. O que é Service Discovery?
-É o processo de localizar dinamicamente os endereços dos microservices. Pode ser implementado com ferramentas como Consul, Eureka ou via DNS em ambientes como Kubernetes.
-
-9. Como garantir resiliência entre microservices?
-Utilizando padrões como:
-
-Retry
-
-Circuit Breaker
-
-Timeouts
-
-Fallbacks
-Ferramentas como Polly no .NET ajudam a implementar esses padrões.
-
-10. Quais ferramentas você usaria em uma arquitetura baseada em microservices no .NET?
-
-ASP.NET Core para criação dos serviços
-
-MassTransit ou CAP para mensageria
-
-RabbitMQ, Kafka para filas
-
-Ocelot como API Gateway
-
-Polly para resiliência
-
-Docker/Kubernetes para deploy
-
-Serilog/Seq/Elastic Stack para logging
-
-Prometheus/Grafana para métricas
+10. **Transações?**  
+Use `Database.BeginTransaction()` para controle manual.
 
 ---
 
-**Kafka e RabbitMQ**
+## Dapper
 
-1. Qual a principal diferença entre Kafka e RabbitMQ?
+1. **O que é o Dapper?**  
+Micro ORM rápido que executa SQL e mapeia para objetos.
 
-RabbitMQ é um message broker tradicional baseado em filas, com suporte a padrões como Work Queues, Pub/Sub e RPC.
+2. **Dapper vs EF Core?**  
+Dapper é mais rápido, mas exige SQL manual.
 
-Kafka é uma plataforma de streaming distribuída, ideal para processamento de eventos em larga escala com retenção de mensagens e alta taxa de throughput.
+3. **Como funciona?**  
+Mapeia resultados via reflexão otimizada.
 
-2. Em quais casos Kafka é mais indicado?
+4. **É seguro contra SQL Injection?**  
+Sim, usando parâmetros nomeados.
 
-Alta taxa de mensagens por segundo (milhões)
+5. **SELECT com Dapper?**  
+```csharp
+var user = conn.QueryFirst<User>("SELECT * FROM Users WHERE Id = @Id", new { Id = 1 });
+```
 
-Processamento de eventos em tempo real
+6. **Métodos comuns?**  
+- `Query`, `QueryFirst`, `QuerySingle`, `Execute`.
 
-Retenção longa de mensagens
+7. **Joins e múltiplos objetos?**  
+```csharp
+conn.Query<A, B, A>("SELECT * FROM A JOIN B ON A.Id = B.AId", (a, b) => { a.B = b; return a; });
+```
 
-Pipelines de dados, analytics e event sourcing
+8. **Transações?**  
+Usa `IDbTransaction`.
 
-3. Em quais casos RabbitMQ é mais indicado?
+9. **Insert com retorno de ID?**  
+```csharp
+var id = conn.QuerySingle<int>("INSERT INTO Table (...) OUTPUT INSERTED.Id VALUES (...)");
+```
 
-Simplicidade de uso
-
-Processamento transacional e confiável de mensagens
-
-Mensageria tradicional com confirmação de entrega
-
-Cenários que exigem roteamento complexo com tópicos e headers
-
-4. Kafka garante entrega de mensagens?
-Sim, com três modos de entrega:
-
-At most once: pode perder mensagens
-
-At least once: pode duplicar
-
-Exactly once: exige configuração adicional, disponível em contextos específicos
-
-5. RabbitMQ garante ordem das mensagens?
-Sim, dentro da mesma fila, as mensagens são entregues na ordem. Porém, com múltiplos consumidores em paralelo, essa ordem pode ser comprometida.
-
-6. O que são tópicos e partições no Kafka?
-
-Um tópico é como uma categoria para mensagens.
-
-Cada tópico pode ter várias partições, que armazenam mensagens em ordem e permitem escalabilidade horizontal.
-
-7. Como funciona a persistência de mensagens em Kafka e RabbitMQ?
-
-Kafka armazena mensagens em disco por padrão, com retenção configurável (por tempo ou tamanho).
-
-RabbitMQ também pode persistir mensagens se configurado, mas o foco principal é a entrega imediata.
-
-8. Como é feito o consumo de mensagens no Kafka?
-Consumidores fazem parte de consumer groups, e cada partição de um tópico é atribuída a apenas um consumidor do grupo. Isso garante paralelismo e balanceamento automático.
-
-9. O que usar em .NET para integrar com Kafka e RabbitMQ?
-
-Kafka: biblioteca Confluent.Kafka
-
-RabbitMQ: RabbitMQ.Client ou MassTransit (que suporta ambos)
-
-10. Kafka ou RabbitMQ: Qual escolher?
-Depende do caso:
-
-Use Kafka para alto volume, retenção, streaming, logs de eventos.
-
-Use RabbitMQ para integração entre serviços, baixa latência e confiabilidade simples.
+10. **Quando usar Dapper?**  
+Quando performance e controle são mais importantes que abstração.
 
 ---
 
-**Princípios de Desenvolvimento – DRY, KISS, YAGNI**
+## Microservices
 
-🔁 DRY – Don’t Repeat Yourself
-Conceito: Evite duplicação de lógica ou código. Toda peça de conhecimento deve ter uma representação única, não duplicada, dentro do sistema.
+1. **O que são Microservices?**  
+Arquitetura em que cada funcionalidade da aplicação é implementada como um serviço independente.
 
-Objetivo: Melhorar a manutenção e a clareza do código.
+2. **Vantagens:**  
+- Escalabilidade independente  
+- Deploy separado  
+- Isolamento de falhas  
+- Times autônomos
 
-Exemplo ruim: múltiplas funções fazendo o mesmo cálculo com código copiado.
+3. **Desafios:**  
+- Orquestração  
+- Comunicação entre serviços  
+- Monitoramento e logging  
+- Gerenciamento de dados
 
-Exemplo bom: extrair lógica repetida para um método reutilizável.
+4. **Síncrono vs Assíncrono?**  
+- Síncrono: via HTTP/gRPC  
+- Assíncrono: via RabbitMQ, Kafka
 
-👌 KISS – Keep It Simple, Stupid
-Conceito: Mantenha o código o mais simples possível. Soluções simples são mais fáceis de entender, manter e menos propensas a bugs.
+5. **O que é um API Gateway?**  
+Ponto único de entrada para múltiplos serviços. Gera roteamento, autenticação, cache, etc.
 
-Objetivo: Evitar complexidade desnecessária.
+6. **Transações distribuídas?**  
+Via Sagas, Eventual Consistency, mensageria.
 
-Exemplo ruim: usar padrões complexos onde uma função resolveria.
+7. **Autenticação entre serviços?**  
+JWT + OAuth2 + IdentityServer.
 
-Exemplo bom: preferir estruturas simples até que a complexidade seja realmente necessária.
+8. **Service Discovery?**  
+Localização automática de serviços. Ferramentas: Consul, Eureka, Kubernetes DNS.
 
-🚫 YAGNI – You Aren’t Gonna Need It
-Conceito: Não implemente funcionalidades que você acha que vai precisar no futuro. Só implemente o que é necessário agora.
+9. **Resiliência?**  
+Circuit Breaker, Retry, Timeout (via Polly).
 
-Objetivo: Evitar desperdício de tempo e complexidade prematura.
-
-Exemplo ruim: criar uma estrutura genérica sem haver demanda real.
-
-Exemplo bom: desenvolver apenas as funcionalidades pedidas e refatorar quando necessário.
-
----
-
-**Domain-Driven Design (DDD)**
-
-1. O que é Domain-Driven Design (DDD)?
-É uma abordagem de desenvolvimento de software centrada no modelo do domínio da aplicação, com foco em representar as regras de negócio de forma clara, usando linguagem ubíqua e separando responsabilidades em camadas.
-
-2. O que é o "Modelo de Domínio"?
-É a representação do negócio em código. Inclui entidades, agregados, serviços de domínio e objetos de valor, e busca refletir a lógica da área de negócio de forma precisa e expressiva.
-
-3. O que é uma Entidade em DDD?
-Uma entidade é um objeto que possui identidade própria e contínua no tempo, mesmo que seus atributos mudem. Exemplo: um Pedido com Id.
-
-4. O que é um Objeto de Valor (Value Object)?
-É um tipo de objeto imutável que não possui identidade. É identificado apenas por seus atributos. Exemplo: Endereco, CPF.
-
-5. O que é um Agregado e o que é o Agregado Raiz?
-Um agregado é um conjunto de entidades e objetos de valor que formam uma unidade de consistência.
-O agregado raiz é a entidade principal que controla o acesso às outras partes do agregado.
-
-6. O que é um Serviço de Domínio?
-É uma classe que representa uma operação que pertence ao domínio, mas não se encaixa naturalmente em uma entidade ou value object. Deve ser stateless.
-
-7. O que é a Linguagem Ubíqua?
-É um vocabulário comum compartilhado entre desenvolvedores e especialistas do negócio, usado tanto no código quanto na comunicação verbal, para evitar ambiguidades.
-
-8. Como o DDD organiza o projeto em camadas?
-DDD tradicionalmente utiliza as seguintes camadas:
-
-Domínio (entidades, value objects, serviços)
-
-Aplicação (casos de uso)
-
-Infraestrutura (acesso a dados, serviços externos)
-
-Interface/API (entrada/saída)
-
-9. Qual a diferença entre Service de Domínio e Service de Aplicação?
-
-Serviço de domínio: contém regras de negócio puras, sem dependência de infraestrutura.
-
-Serviço de aplicação: orquestra operações e interage com o domínio, repositórios e outros serviços.
-
-10. O que é um Repositório em DDD?
-Um repositório fornece uma abstração para persistência, permitindo obter e armazenar agregados sem expor detalhes da infraestrutura (ex: banco de dados).
+10. **Ferramentas comuns?**  
+ASP.NET Core, MassTransit, RabbitMQ, Ocelot, Serilog, Docker, Kubernetes.
 
 ---
 
-**Listas em C#**
+## Kafka e RabbitMQ
 
-1. O que é List<T> em C#?
-É uma coleção genérica que representa uma lista fortemente tipada de objetos acessíveis por índice. Faz parte do namespace System.Collections.Generic.
+1. **Diferença entre Kafka e RabbitMQ?**  
+Kafka: streaming distribuído e persistente.  
+RabbitMQ: broker tradicional baseado em filas.
 
-2. Qual a diferença entre List<T> e Array?
+2. **Quando usar Kafka?**  
+Alta taxa de throughput, retenção longa, pipelines de dados.
 
-Array: tamanho fixo, mais performático em operações básicas.
+3. **Quando usar RabbitMQ?**  
+Roteamento complexo, confiabilidade, baixa latência.
 
-List<T>: tamanho dinâmico, oferece métodos úteis como Add, Remove, Find, Where.
+4. **Kafka entrega garantida?**  
+Sim: at most once, at least once, exactly once.
 
-3. Como adicionar, remover e acessar itens em uma lista?
+5. **RabbitMQ garante ordem?**  
+Sim, em uma única fila e consumidor.
 
-csharp
-Copiar
-Editar
-var lista = new List<string>();
-lista.Add("Item1");
-lista.Remove("Item1");
+6. **Tópicos e partições no Kafka?**  
+Tópico = categoria. Partições = paralelismo.
+
+7. **Persistência:**  
+Kafka = disco. RabbitMQ = configurável.
+
+8. **Consumo em Kafka?**  
+Via consumer groups e offset manual.
+
+9. **.NET Clients?**  
+Kafka: Confluent.Kafka  
+RabbitMQ: RabbitMQ.Client ou MassTransit
+
+10. **Quando usar cada um?**  
+Kafka: eventos em escala. RabbitMQ: filas de tarefas e RPC.
+
+---
+
+## Princípios DRY, KISS, YAGNI
+
+### DRY – Don’t Repeat Yourself  
+Evite duplicação de lógica ou dados. Centralize comportamentos repetidos.
+
+### KISS – Keep It Simple, Stupid  
+Prefira o simples ao complexo. Soluções simples são mais fáceis de manter.
+
+### YAGNI – You Aren’t Gonna Need It  
+Não implemente nada que não for exigido agora.
+
+**Exemplos de aplicação:**  
+- Refatorar código repetido → DRY  
+- Usar estrutura simples, evitar abstrações prematuras → KISS  
+- Evitar criar configurações e parâmetros sem necessidade atual → YAGNI
+
+---
+
+## Domain-Driven Design (DDD)
+
+1. **O que é DDD?**  
+Foco em refletir o domínio do negócio em código, com modelagem rica e linguagem ubíqua.
+
+2. **Modelo de Domínio?**  
+Conjunto de entidades, value objects, serviços de domínio e agregados.
+
+3. **Entidade?**  
+Objeto com identidade única e ciclo de vida.
+
+4. **Value Object?**  
+Objeto imutável sem identidade (ex: CPF, Endereço).
+
+5. **Agregado e Agregado Raiz?**  
+Agregado: grupo de entidades. Raiz: garante regras e consistência.
+
+6. **Serviço de Domínio?**  
+Representa ações do domínio que não pertencem a uma entidade específica.
+
+7. **Linguagem Ubíqua?**  
+Vocabulário comum entre devs e especialistas do domínio.
+
+8. **Camadas do DDD?**  
+- Domínio  
+- Aplicação  
+- Infraestrutura  
+- Interface/API
+
+9. **Service de Aplicação vs Domínio?**  
+- Aplicação: orquestra regras e persistência.  
+- Domínio: contém lógica de negócio pura.
+
+10. **Repositório?**  
+Interface que encapsula persistência de agregados.
+
+---
+
+## Listas em C#
+
+1. **O que é List<T>?**  
+Coleção genérica de objetos com acesso por índice.
+
+2. **Diferença de Array e List<T>?**  
+Array tem tamanho fixo; List<T> é dinâmica e tem métodos úteis.
+
+3. **Adicionar, remover, acessar:**  
+```csharp
+var lista = new List<string>();  
+lista.Add("Item");  
+lista.Remove("Item");  
 var primeiro = lista[0];
-4. Como filtrar uma lista usando LINQ?
+```
 
-csharp
-Copiar
-Editar
-var nomes = lista.Where(n => n.StartsWith("A")).ToList();
-5. Como ordenar uma List<T>?
+4. **Filtrar com LINQ:**  
+```csharp
+var filtrados = lista.Where(x => x.StartsWith("A")).ToList();
+```
 
-csharp
-Copiar
-Editar
-lista.Sort(); // Para tipos que implementam IComparable
-lista.OrderBy(x => x.Propriedade).ToList(); // Com LINQ
-6. Qual a diferença entre IEnumerable<T>, ICollection<T> e List<T>?
+5. **Ordenar:**  
+```csharp
+lista.Sort();  
+lista.OrderBy(x => x.Prop).ToList();
+```
 
-IEnumerable<T>: apenas leitura sequencial, ideal para LINQ.
+6. **IEnumerable vs ICollection vs List:**  
+- IEnumerable: leitura  
+- ICollection: leitura + escrita  
+- List: implementação completa
 
-ICollection<T>: permite manipulação (Add, Remove).
-
-List<T>: implementação concreta de ICollection<T> com acesso por índice.
-
-7. Como evitar NullReferenceException ao trabalhar com listas?
-Inicializando a lista:
-
-csharp
-Copiar
-Editar
+7. **Evitar nulls:**  
+```csharp
 public List<Produto> Produtos { get; set; } = new();
-8. Como verificar se uma lista está vazia ou contém elementos?
+```
 
-csharp
-Copiar
-Editar
+8. **Verificar vazia:**  
+```csharp
 if (!lista.Any()) { ... }
-if (lista.Count == 0) { ... }
-9. O que acontece quando removemos um item de uma lista dentro de um foreach?
-Vai lançar exceção (InvalidOperationException). Soluções:
+```
 
-Usar for ao invés de foreach
+9. **Remover item em foreach?**  
+Evitar! Use `for` ou lista auxiliar.
 
-Criar uma lista auxiliar com os itens a remover
-
-10. Como comparar listas em C#?
-
-SequenceEqual compara itens em ordem:
-
-csharp
-Copiar
-Editar
+10. **Comparar listas:**  
+```csharp
 list1.SequenceEqual(list2)
-Para comparação sem ordem, usar Set ou ordenação + comparação.
+```
 
 ---
 
-**AWS**
+## AWS
 
-1. O que é a AWS?
-Amazon Web Services é uma plataforma de computação em nuvem da Amazon que oferece serviços sob demanda, como computação, armazenamento, banco de dados, mensagens, autenticação, entre outros.
+1. **O que é AWS?**  
+Plataforma de serviços em nuvem da Amazon.
 
-2. Quais serviços AWS são mais utilizados em aplicações .NET?
+2. **Serviços comuns com .NET:**  
+- EC2, S3, RDS, DynamoDB, SQS, SNS, Lambda
 
-EC2 (máquinas virtuais)
+3. **Enviar para o S3:**  
+```csharp
+await s3.PutObjectAsync(new PutObjectRequest { BucketName = "bucket", FilePath = "arquivo.txt" });
+```
 
-S3 (armazenamento de objetos)
+4. **IAM?**  
+Gerencia usuários e permissões com políticas.
 
-RDS (banco de dados relacional)
+5. **AWS Lambda?**  
+Funções serverless acionadas por eventos.
 
-DynamoDB (NoSQL)
+6. **SQS vs SNS:**  
+- SQS = fila  
+- SNS = pub/sub
 
-SQS (fila de mensagens)
+7. **Amazon RDS?**  
+Banco relacional gerenciado (SQL Server, PostgreSQL...).
 
-SNS (notificações)
+8. **Monitorar apps:**  
+Com CloudWatch: logs, métricas, alertas.
 
-Lambda (funções serverless)
+9. **Secrets Manager?**  
+Armazena e recupera senhas/segredos com segurança.
 
-Secrets Manager (segredos)
-
-CloudWatch (logs e métricas)
-
-3. Como um sistema .NET pode enviar arquivos para o S3?
-Utilizando o pacote AWSSDK.S3:
-
-csharp
-Copiar
-Editar
-var s3 = new AmazonS3Client();
-await s3.PutObjectAsync(new PutObjectRequest {
-    BucketName = "meu-bucket",
-    Key = "arquivo.txt",
-    FilePath = "caminho/local/arquivo.txt"
-});
-4. O que é IAM e qual sua importância?
-IAM (Identity and Access Management) gerencia usuários, permissões e papéis. Ele é essencial para aplicar o princípio de menor privilégio e proteger o acesso a recursos AWS.
-
-5. Como funciona o AWS Lambda?
-Lambda permite executar código sem provisionar servidores. Ideal para tarefas pequenas e event-driven. Em .NET, você pode escrever handlers usando C# e publicá-los diretamente com o AWS Toolkit ou CLI.
-
-6. Qual a diferença entre SQS e SNS?
-
-SQS: sistema de filas (mensageria assíncrona ponto a ponto).
-
-SNS: sistema de notificações (pub/sub), envia mensagens para múltiplos assinantes.
-
-7. O que é o Amazon RDS?
-É um serviço gerenciado de banco de dados relacional. Você pode usar SQL Server, PostgreSQL, MySQL, entre outros, com backups automáticos, escalabilidade e alta disponibilidade.
-
-8. Como monitorar aplicações .NET na AWS?
-Com CloudWatch, é possível enviar logs, métricas customizadas, configurar alarmes e visualizar dashboards.
-
-9. O que é o AWS Secrets Manager?
-Serviço para armazenar e gerenciar senhas, tokens e chaves de API com segurança. Pode ser integrado com a aplicação para recuperar segredos em tempo de execução.
-
-10. Como autenticar uma aplicação .NET com a AWS?
-Utilizando chaves de acesso (AccessKey/Secret) ou um perfil IAM associado à instância (quando hospedado na AWS). Melhor prática: usar IAM Role com permissões mínimas necessárias.
+10. **Autenticação apps .NET:**  
+Via AccessKey/Secret ou roles IAM associadas a instâncias.
 
 ---
 
-**Docker e Kubernetes**
+## Docker e Kubernetes
 
-1. O que é Docker e para que serve?
-Docker é uma plataforma que permite empacotar aplicações e suas dependências em containers, garantindo portabilidade, consistência e facilidade de deploy em qualquer ambiente.
+1. **Docker?**  
+Plataforma para empacotar aplicações em containers.
 
-2. Qual a diferença entre container e máquina virtual?
+2. **Container vs VM?**  
+Container compartilha kernel, VM simula hardware completo.
 
-Container: compartilha o kernel do host, mais leve e rápido para iniciar.
-
-Máquina Virtual: simula hardware completo, com sistema operacional isolado, mais pesada.
-
-3. Como funciona um Dockerfile?
-É um script com instruções para construir uma imagem Docker. Exemplo básico para .NET:
-
-dockerfile
-Copiar
-Editar
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
-COPY . /app
-WORKDIR /app
+3. **Dockerfile?**  
+Script para construir imagem.  
+```dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:7.0  
+COPY . /app  
+WORKDIR /app  
 ENTRYPOINT ["dotnet", "MinhaApp.dll"]
-4. O que é uma imagem e o que é um container?
+```
 
-Imagem: blueprint imutável com o código e dependências da aplicação.
+4. **Imagem vs Container?**  
+- Imagem: blueprint  
+- Container: instância em execução
 
-Container: instância executável de uma imagem.
+5. **Docker Compose?**  
+Orquestra múltiplos containers com YAML.
 
-5. O que é o Docker Compose e quando usar?
-Ferramenta para definir e rodar múltiplos containers com um único arquivo docker-compose.yml. Ideal para orquestrar ambientes locais com banco, API, cache, etc.
+6. **Kubernetes?**  
+Orquestrador de containers com deploy, escalonamento, recovery.
 
-6. O que é o Kubernetes e qual seu papel?
-Kubernetes (k8s) é uma plataforma de orquestração de containers. Ele gerencia o deploy, escalabilidade, balanceamento de carga, atualizações e saúde dos containers em um cluster.
+7. **Pods, Deployments e Services?**  
+- Pod: unidade mínima  
+- Deployment: estratégia de deploy  
+- Service: expõe pods
 
-7. O que são Pods, Deployments e Services no Kubernetes?
+8. **Escalonamento?**  
+Via Horizontal Pod Autoscaler (HPA).
 
-Pod: menor unidade executável; encapsula um ou mais containers.
+9. **Persistência de dados:**  
+Volumes (Docker) ou PV/PVC (Kubernetes).
 
-Deployment: define como os pods devem ser criados, escalados e atualizados.
-
-Service: expõe os pods para acesso interno ou externo, garantindo descoberta e balanceamento.
-
-8. Como escalar uma aplicação no Kubernetes?
-Usando kubectl scale ou configurando autoescalonamento com Horizontal Pod Autoscaler (HPA), baseado em CPU/memória.
-
-9. Como persistir dados em containers/Kubernetes?
-Com o uso de volumes:
-
-Docker: volumes ou bind mounts
-
-Kubernetes: PersistentVolume (PV) e PersistentVolumeClaim (PVC)
-
-10. Como um desenvolvedor .NET pode usar Docker + Kubernetes?
-
-Criando imagens com Docker e publicando no Docker Hub ou ECR
-
-Usando Helm ou arquivos YAML para deploy em clusters
-
-Integrando com Azure Kubernetes Service (AKS) ou Amazon EKS
-
-Fazendo CI/CD com Docker build/push e kubectl apply
+10. **.NET + Docker + K8s:**  
+Build → Push no ECR → Deploy no EKS com Helm/YAML
 
 ---
 
-**CI/CD – CodeCommit, CodePipeline e CodeBuild (AWS)**
+## CI/CD – CodeCommit, CodeBuild, CodePipeline
 
-1. O que é CI/CD?
-CI/CD (Integração Contínua / Entrega Contínua) é uma prática de DevOps onde o código é integrado, testado e entregue automaticamente em ambientes de produção ou homologação de forma contínua e confiável.
+1. **O que é CI/CD?**  
+Prática de integração e entrega contínuas com automação de testes e deploys.
 
-2. O que é o CodeCommit?
-É o repositório Git da AWS. Similar ao GitHub, GitLab e Bitbucket, mas totalmente gerenciado pela AWS. Integra facilmente com serviços como CodePipeline e IAM.
+2. **CodeCommit?**  
+Repositório Git gerenciado pela AWS.
 
-3. O que é o CodeBuild?
-Serviço de build contínuo da AWS. Ele compila o código, executa testes e gera artefatos (como pacotes, imagens, etc). Você configura com um buildspec.yml.
+3. **CodeBuild?**  
+Serviço de build que compila código, roda testes, gera artefatos.
 
-4. O que é o CodePipeline?
-Serviço de orquestração de pipelines de CI/CD. Ele automatiza o fluxo de integração, testes, build e deploy. Conecta serviços como CodeCommit, CodeBuild, S3, ECS, Lambda, etc.
+4. **CodePipeline?**  
+Orquestrador de todo o processo de CI/CD.
 
-5. Qual é o fluxo típico de CI/CD com CodeCommit, CodeBuild e CodePipeline?
+5. **Fluxo típico:**  
+Commit → Pipeline → Build → Testes → Deploy
 
-Desenvolvedor faz push para o CodeCommit.
-
-CodePipeline detecta a mudança.
-
-Aciona o CodeBuild para compilar e testar.
-
-Deploy automático em S3, ECS, Lambda, etc.
-
-6. Como funciona o buildspec.yml no CodeBuild?
-É o arquivo de configuração do processo de build. Exemplo básico:
-
-yaml
-Copiar
-Editar
-version: 0.2
-phases:
-  build:
-    commands:
+6. **buildspec.yml:**  
+Define comandos de build/teste.  
+```yaml
+phases:  
+  build:  
+    commands:  
       - dotnet build
-artifacts:
-  files:
-    - '**/*'
-7. Como controlar quem acessa o pipeline?
-Com políticas de IAM. Você pode definir quem pode iniciar, editar ou visualizar pipelines, builds e repositórios, além de usar roles para serviços.
+```
 
-8. É possível integrar testes automatizados no CodeBuild?
-Sim, basta adicionar comandos de teste no buildspec.yml, como:
+7. **Controle de acesso:**  
+Via IAM policies e roles.
 
-yaml
-Copiar
-Editar
-- dotnet test
-Os resultados podem ser exportados como relatórios.
+8. **Testes no build?**  
+Sim. Basta configurar com `dotnet test` no buildspec.
 
-9. Como fazer deploy de uma aplicação .NET no ECS usando CI/CD?
+9. **Deploy com ECS:**  
+Build de imagem → Push no ECR → Atualizar ECS no Pipeline.
 
-Criar imagem Docker no CodeBuild
-
-Fazer push no Amazon ECR
-
-Configurar passo no CodePipeline que aciona ECS (Fargate ou EC2)
-
-ECS atualiza os containers com a nova imagem
-
-10. Quais alternativas AWS para CI/CD além do trio CodeCommit/CodeBuild/CodePipeline?
-
-GitHub Actions + AWS CLI
-
-GitLab CI/CD + AWS CLI
-
-AWS Amplify (para front-end)
-
-AWS CloudFormation / CDK (infraestrutura como código com deploys automatizados)
+10. **Alternativas AWS:**  
+GitHub Actions, GitLab CI, Amplify, CDK, CloudFormation.
 
 ---
 
-**Design Patterns**
+## Design Patterns
 
-1. O que são Design Patterns?
-São soluções reutilizáveis para problemas comuns de design de software. São boas práticas documentadas para estruturar código de forma mais flexível, escalável e legível.
+1. **O que são Design Patterns?**  
+Padrões reutilizáveis para problemas comuns de design.
 
-2. Quais são os 3 grupos clássicos de Design Patterns?
+2. **Tipos:**  
+- Criacionais (Factory, Singleton)  
+- Estruturais (Adapter, Decorator)  
+- Comportamentais (Strategy, Observer)
 
-Criacionais: tratam da criação de objetos (ex: Singleton, Factory)
+3. **Singleton:**  
+Uma única instância global.  
+```csharp
+private static readonly Logger _instance = new Logger();
+```
 
-Estruturais: tratam da composição de classes/objetos (ex: Adapter, Decorator)
+4. **Factory:**  
+Cria objetos encapsulando lógica de instância.
 
-Comportamentais: tratam da comunicação entre objetos (ex: Strategy, Observer)
+5. **Abstract Factory:**  
+Cria famílias de objetos compatíveis.
 
-3. O que é o padrão Singleton e quando usá-lo?
-Garante que uma classe tenha uma única instância e fornece um ponto global de acesso. Exemplo clássico: loggers, cache, configurações globais.
+6. **Strategy:**  
+Permite trocar algoritmo em tempo de execução.
 
-4. Como implementar o Singleton em C#?
+7. **Repository:**  
+Encapsula acesso ao banco de dados.
 
-csharp
-Copiar
-Editar
-public sealed class Logger {
-    private static readonly Logger _instance = new Logger();
-    public static Logger Instance => _instance;
-    private Logger() { }
-}
-5. O que é o padrão Factory e quando usá-lo?
-Oculta a lógica de criação de objetos, centralizando a instância em uma fábrica. Útil quando a lógica de criação varia conforme parâmetros.
+8. **Mediator:**  
+Centraliza comunicações (ex: MediatR).
 
-6. Qual a diferença entre Factory e Abstract Factory?
+9. **Decorator:**  
+Adiciona comportamento sem modificar o objeto.
 
-Factory cria um único tipo de objeto.
-
-Abstract Factory cria famílias de objetos relacionados, garantindo compatibilidade entre eles.
-
-7. O que é o padrão Strategy?
-Permite definir múltiplas implementações intercambiáveis de um algoritmo, encapsulando-as em classes distintas. É útil para eliminar condicionais complexas.
-
-8. O que é o padrão Repository?
-Encapsula o acesso ao banco de dados, fornecendo uma interface consistente para persistência, desacoplando o domínio da infraestrutura de dados.
-
-9. O que é o padrão Mediator (ex: MediatR)?
-Centraliza a comunicação entre objetos, evitando acoplamentos diretos. No .NET, o MediatR implementa esse padrão com envio de comandos e eventos.
-
-10. Como aplicar Decorator em C#?
-Você pode usar composição para adicionar funcionalidades dinamicamente a um objeto:
-
-csharp
-Copiar
-Editar
-interface ICafe { string Servir(); }
-
-class CafeSimples : ICafe {
-    public string Servir() => "Café";
-}
-
-class CafeComLeite : ICafe {
-    private readonly ICafe _baseCafe;
-    public CafeComLeite(ICafe baseCafe) => _baseCafe = baseCafe;
-    public string Servir() => _baseCafe.Servir() + " com leite";
-}
+10. **Aplicação no .NET:**  
+Utilização comum com DI, MediatR, validação, repositórios.
 
 ---
 
-**Circuit Breaker**
+## Circuit Breaker
 
-1. O que é o padrão Circuit Breaker?
-É um padrão de resiliência que previne chamadas repetidas para um serviço falho, interrompendo temporariamente as requisições e permitindo a recuperação do sistema.
+1. **O que é?**  
+Previne chamadas repetidas para serviços instáveis.
 
-2. Em quais situações o Circuit Breaker é útil?
+2. **Quando usar?**  
+Serviços externos sujeitos a falhas.
 
-Quando um serviço externo está indisponível ou instável
+3. **Estados:**  
+Closed → Open → Half-Open → Closed
 
-Para evitar sobrecarga e cascata de falhas
+4. **Transições:**  
+- Falhas → Open  
+- Timeout → Half-Open  
+- Sucesso → Closed
 
-Em sistemas distribuídos que dependem de múltiplos microserviços
+5. **Polly em .NET:**  
+```csharp
+Policy.Handle<Exception>().CircuitBreakerAsync(3, TimeSpan.FromSeconds(30));
+```
 
-3. Quais são os estados do Circuit Breaker?
+6. **Open = chamadas bloqueadas.**  
+Resposta imediata de falha.
 
-Closed: todas as requisições passam normalmente
+7. **Retry vs Circuit Breaker:**  
+Retry tenta repetir, CB evita sobrecarga.
 
-Open: chamadas são bloqueadas imediatamente
+8. **Combinar policies:**  
+Com `Policy.WrapAsync`.
 
-Half-Open: permite chamadas de teste para verificar se o serviço se recuperou
+9. **Monitoramento:**  
+Logs, métricas, Application Insights.
 
-4. Como funciona a transição de estados?
-
-De Closed para Open: após um número limite de falhas consecutivas
-
-De Open para Half-Open: após um tempo configurado de espera (timeout)
-
-De Half-Open para Closed: se a chamada de teste for bem-sucedida
-
-5. Como implementar Circuit Breaker em .NET?
-Utilizando a biblioteca Polly:
-
-csharp
-Copiar
-Editar
-Policy
-  .Handle<HttpRequestException>()
-  .CircuitBreakerAsync(3, TimeSpan.FromSeconds(30));
-6. O que acontece quando o circuito está Open?
-O sistema não tenta mais fazer chamadas para o serviço remoto. Retorna uma falha imediata (fallback) para o consumidor.
-
-7. Qual a diferença entre Circuit Breaker e Retry?
-
-Retry tenta repetir uma chamada que falhou.
-
-Circuit Breaker bloqueia novas tentativas após falhas consecutivas, para dar tempo de recuperação ao serviço alvo.
-
-8. É possível combinar Retry com Circuit Breaker?
-Sim, é uma prática comum:
-
-csharp
-Copiar
-Editar
-var retryPolicy = Policy.Handle<Exception>().RetryAsync(3);
-var circuitBreaker = Policy.Handle<Exception>().CircuitBreakerAsync(2, TimeSpan.FromSeconds(15));
-
-var policyWrap = Policy.WrapAsync(retryPolicy, circuitBreaker);
-9. Como monitorar o comportamento do Circuit Breaker?
-Usando logs, métricas customizadas, ou ferramentas como Application Insights, Prometheus, Grafana, ou eventos emitidos via Polly telemetry.
-
-10. Qual o impacto de não usar Circuit Breaker em microservices?
-
-Sobrecarga contínua em serviços falhos
-
-Cascata de erros entre serviços
-
-Redução geral de disponibilidade e confiabilidade do sistema
-
-Maior tempo de recuperação de falhas
+10. **Riscos de não usar:**  
+Sobrecarga, falhas em cascata, downtime.
 
 ---
 
-**HTTP Status Codes**
+## HTTP Status Codes
 
-1. O que são status codes HTTP?
-São códigos numéricos retornados por um servidor para indicar o resultado de uma requisição. Eles seguem o padrão da especificação HTTP e ajudam o cliente a entender o que ocorreu.
+1. **O que são?**  
+Indicadores do resultado da requisição HTTP.
 
-2. Quais são as principais categorias de status codes?
+2. **Categorias:**  
+- 1xx: Informativos  
+- 2xx: Sucesso  
+- 3xx: Redirecionamento  
+- 4xx: Cliente  
+- 5xx: Servidor
 
-1xx – Informativos
+3. **200 OK:**  
+Requisição bem-sucedida.
 
-2xx – Sucesso
+4. **201 Created:**  
+Recurso criado (ex: POST).
 
-3xx – Redirecionamento
+5. **204 No Content:**  
+Sem conteúdo na resposta.
 
-4xx – Erro do cliente
+6. **400 Bad Request:**  
+Erro de requisição malformada.
 
-5xx – Erro do servidor
+7. **401 vs 403:**  
+- 401: Não autenticado  
+- 403: Sem permissão
 
-3. O que significa o status code 200?
-OK – A requisição foi bem-sucedida e o servidor retornou os dados normalmente.
+8. **404 Not Found:**  
+Recurso não encontrado.
 
-4. Quando utilizar o status code 201?
-Created – Usado após uma requisição POST que resultou na criação de um recurso, como ao cadastrar um novo item.
+9. **500 Internal Server Error:**  
+Erro inesperado no servidor.
 
-5. Qual a diferença entre 204 e 200?
-
-200 OK: resposta com conteúdo.
-
-204 No Content: a requisição foi bem-sucedida, mas não há conteúdo no corpo da resposta.
-
-6. Quando usar o código 400?
-Bad Request – A requisição foi malformada ou tem dados inválidos. Exemplo: campos obrigatórios ausentes.
-
-7. Qual a diferença entre 401 e 403?
-
-401 Unauthorized: o usuário não está autenticado.
-
-403 Forbidden: o usuário está autenticado, mas não tem permissão para acessar o recurso.
-
-8. O que indica o status code 404?
-Not Found – O recurso solicitado não foi encontrado no servidor.
-
-9. O que significa 500 Internal Server Error?
-Erro genérico que indica que o servidor encontrou uma falha inesperada durante o processamento da requisição.
-
-10. Como retornar status codes corretamente em ASP.NET Core?
-Exemplo com IActionResult:
-
-csharp
-Copiar
-Editar
-return NotFound(); // 404
-return Ok(dados); // 200
-return Created("/api/itens/1", item); // 201
-return BadRequest(erro); // 400
+10. **ASP.NET Core:**  
+```csharp
+return NotFound();  
+return Ok(obj);  
+return Created(...);  
+return BadRequest(erro);
+```
 
 ---
 
-**Arquitetura de Software**
+## Arquitetura de Software
 
-1. O que é arquitetura de software?
-É a definição da estrutura e organização de um sistema, incluindo seus componentes, interações, tecnologias, padrões e decisões de alto nível que impactam manutenibilidade, escalabilidade, performance e segurança.
+1. **O que é?**  
+Estrutura de alto nível da aplicação.
 
-2. Qual a diferença entre arquitetura monolítica e microsserviços?
+2. **Monolito vs Microsserviços:**  
+Monolito = 1 app.  
+Microsserviços = serviços independentes.
 
-Monolítica: toda a aplicação é empacotada e executada como um único processo.
+3. **Arquitetura em Camadas:**  
+UI, Aplicação, Domínio, Infraestrutura.
 
-Microsserviços: a aplicação é dividida em módulos independentes, com comunicação via APIs ou mensageria.
+4. **Arquitetura Hexagonal:**  
+Domínio isolado com adaptadores externos.
 
-3. O que é a arquitetura em camadas?
-É uma abordagem tradicional onde a aplicação é dividida em camadas com responsabilidades bem definidas:
+5. **Clean Architecture:**  
+Domínio no centro. Sem dependência externa.
 
-Apresentação (UI)
+6. **SOLID + Arquitetura:**  
+Código desacoplado e testável.
 
-Aplicação
+7. **Cross-cutting concerns:**  
+Log, autenticação, cache → Middlewares/Decorators.
 
-Domínio (regra de negócio)
+8. **Separar domínio da infra?**  
+Facilita testes e manutenções.
 
-Infraestrutura (dados e serviços externos)
+9. **CQRS:**  
+Separar leitura (query) de escrita (command).
 
-4. O que é arquitetura hexagonal (Ports & Adapters)?
-Separa o núcleo da aplicação (domínio) de suas dependências externas por meio de portas (interfaces) e adaptadores. Facilita testes e evita acoplamento com frameworks.
-
-5. O que é o padrão Clean Architecture?
-Defende um modelo onde o domínio fica no centro e é completamente isolado das tecnologias externas (banco, web, frameworks). As dependências são sempre direcionadas para o centro.
-
-6. Como se aplicam princípios SOLID à arquitetura?
-SOLID ajuda a criar componentes coesos, desacoplados e testáveis, alinhando a estrutura interna da aplicação com os objetivos da arquitetura.
-
-7. O que são cross-cutting concerns e como tratá-los?
-São funcionalidades transversais a várias partes do sistema, como log, cache, autenticação. Devem ser tratados com middlewares, interceptadores ou decorators, evitando poluir o domínio.
-
-8. Qual a importância de separar domínio da infraestrutura?
-Evita acoplamento e facilita testes, manutenção e troca de tecnologias (ex: mudar banco ou API externa sem impactar regras de negócio).
-
-9. O que é o padrão CQRS e quando aplicá-lo?
-Command Query Responsibility Segregation separa as operações de leitura (Query) das de escrita (Command), ideal para sistemas com grande volume de leitura e lógica de escrita complexa.
-
-10. Como decidir entre usar uma arquitetura mais simples ou uma mais robusta (como Clean Architecture)?
-Depende do contexto:
-
-Projetos pequenos ou com curto ciclo de vida: arquitetura mais simples e pragmática.
-
-Projetos complexos, com muitas regras e integração externa: Clean Architecture ou Hexagonal trazem melhor manutenção e testabilidade a longo prazo.
+10. **Escolher arquitetura:**  
+Baseado na complexidade, escala e tempo de vida do projeto.
 
 ---
 
-**Redis**
+## Redis
 
-1. O que é o Redis?
-Redis é um banco de dados em memória, de código aberto, usado principalmente como cache, estrutura de dados chave-valor, pub/sub e armazenamento temporário. É extremamente rápido.
+1. **O que é Redis?**  
+Banco chave-valor em memória, usado como cache e armazenamento rápido.
 
-2. Quando usar Redis?
-Use Redis quando precisar de:
+2. **Quando usar Redis?**  
+- Cache  
+- Sessões  
+- Locks  
+- Contadores  
+- Ranking
 
-Cache de dados para acelerar consultas frequentes
+3. **Vantagens como cache?**  
+Rapidez e suporte a expiração (TTL).
 
-Sessões temporárias e armazenamentos voláteis
+4. **Redis vs banco relacional:**  
+Não relacional, baseado em memória.
 
-Filas simples ou pub/sub
+5. **.NET com Redis:**  
+```csharp
+var db = ConnectionMultiplexer.Connect("localhost").GetDatabase();
+```
 
-Contadores ou ranking em tempo real
+6. **TTL (Time to Live):**  
+```csharp
+db.StringSet("key", "value", TimeSpan.FromMinutes(5));
+```
 
-Gerenciamento de tokens, OTPs ou locks distribuídos
+7. **Persistência?**  
+Opcional. Redis suporta AOF e RDB.
 
-3. Por que usar Redis como cache?
-Porque ele é extremamente rápido (opera em memória) e suporta expiração (TTL). Ideal para armazenar dados lidos com frequência e que mudam pouco.
+8. **Locks distribuídos:**  
+Comando `SETNX` ou bibliotecas como RedLock.
 
-4. Qual a diferença entre Redis e um banco relacional?
-Redis armazena dados em memória, de forma não relacional e com estrutura simples (strings, hashes, sets, etc.). Bancos relacionais usam disco e possuem schema fixo.
+9. **Escalável?**  
+Sim, com clustering e replicação.
 
-5. Como configurar Redis em uma aplicação .NET?
-Usando o pacote StackExchange.Redis:
-
-csharp
-Copiar
-Editar
-var redis = ConnectionMultiplexer.Connect("localhost");
-var db = redis.GetDatabase();
-db.StringSet("chave", "valor");
-6. O que é TTL (Time To Live) no Redis?
-É o tempo de vida de uma chave no cache. Após o TTL, o valor é automaticamente expirado:
-
-csharp
-Copiar
-Editar
-db.StringSet("chave", "valor", TimeSpan.FromMinutes(5));
-7. Redis é persistente?
-Sim, mas não é seu foco principal. Ele possui modos de persistência opcionais como RDB e AOF, mas o uso ideal é para dados voláteis ou temporários.
-
-8. Como Redis é usado para controle de concorrência?
-Redis pode ser usado para locks distribuídos, por exemplo usando SETNX para garantir que apenas uma instância execute uma ação crítica.
-
-9. Redis funciona em aplicações escaláveis?
-Sim, Redis é ideal para ambientes distribuídos, onde múltiplas instâncias da aplicação precisam acessar o mesmo cache ou sessão de forma eficiente.
-
-10. Quais desvantagens ou cuidados ao usar Redis?
-
-Dados são perdidos se não houver persistência configurada
-
-Armazenamento limitado à memória RAM
-
-Não é ideal para dados relacionais ou com consistência forte
-
-Pode exigir replicação e alta disponibilidade para ambientes críticos
+10. **Desvantagens:**  
+- Volatilidade  
+- RAM limitada  
+- Risco de perda sem persistência
 
 ---
-
-1. Testes Automatizados
-Unit Tests, Integration Tests, Testes de Contrato
-
-Ferramentas como xUnit, NUnit, Moq, FluentAssertions
-
-Testes em APIs: TestServer, WebApplicationFactory
-
-✅ Mostra domínio sobre qualidade e confiabilidade do código.
-
-2. Mensageria com MassTransit ou CAP
-Facilita integração com RabbitMQ ou Kafka
-
-Suporte a retries, dead-letter, consumer/producer, sagas
-
-Preferido em arquiteturas com eventos
-
-✅ Valioso para projetos com microsserviços e mensageria robusta.
-
-3. Segurança em APIs
-JWT, OAuth2, Refresh Token
-
-Autenticação vs Autorização
-
-Rate limiting e validação de entrada
-
-✅ Demonstra preocupação com práticas modernas e segurança.
-
-4. Logging, Monitoramento e Observabilidade
-Uso de Serilog, Elastic Stack (ELK), Application Insights, Grafana + Prometheus
-
-Importância de correlação de logs (TraceId/SpanId)
-
-✅ Indispensável para ambientes produtivos e troubleshooting.
-
-5. Tolerância a falhas e Resiliência
-Além de Circuit Breaker: Retry, Timeout, Fallback, Bulkhead (via Polly)
-
-✅ Essencial em arquiteturas distribuídas e cloud-native.
-
-6. Versionamento e Evolução de APIs
-Versionamento por URL, Header ou Query
-
-API Deprecation e compatibilidade
-
-✅ Mostra maturidade no ciclo de vida de APIs.
-
-7. Infraestrutura como Código (IaC)
-Uso de Terraform, AWS CDK, ou CloudFormation
-
-Automatização e versionamento de ambientes
-
-✅ Muito valorizado em times DevOps e Cloud-first.
